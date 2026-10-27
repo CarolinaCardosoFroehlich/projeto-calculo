@@ -4,7 +4,7 @@ Uma calculadora web para as quatro operações que mais aparecem em Cálculo I: 
 
 Fiz este projeto para a disciplina de Cálculo do curso de Ciência da Computação na Unimar. A proposta era criar uma solução computacional usando os conceitos vistos em aula, e eu quis uma ferramenta que não só desse a resposta, mas também mostrasse visualmente o que cada operação significa.
 
-**Acesse online:** `https://SEU-USUARIO.github.io/projeto-calculo`
+**Acesse online:** `https://CarolinaCardosoFroehlich.github.io/projeto-calculo`
 
 ---
 
