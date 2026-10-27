@@ -1,0 +1,121 @@
+:root {
+  --papel:   #f6f8fa; 
+  --folha:   #ffffff;  
+  --grade:   #dfe6ee;  
+  --tinta:   #1b2733;  
+  --suave:   #5d6c7b;   
+  --azul:    #1f5fbf;  
+  --laranja: #d4561b;   
+  --area:    rgba(31, 95, 191, .16);  
+  --borda:   #cfd8e2;
+
+  --serif: "Instrument Serif", Georgia, serif;
+  --sans:  "IBM Plex Sans", system-ui, sans-serif;
+  --mono:  "IBM Plex Mono", ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papel:   #10161d;
+    --folha:   #161e27;
+    --grade:   #243140;
+    --tinta:   #e4ebf2;
+    --suave:   #93a3b4;
+    --azul:    #6aa5ff;
+    --laranja: #ff8a52;
+    --area:    rgba(106, 165, 255, .18);
+    --borda:   #2c3a4a;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font: 15px/1.5 var(--sans);
+  background-image:
+    linear-gradient(var(--grade) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grade) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
+}
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 32px 16px 48px; }
+
+header h1 { font: 400 clamp(2rem, 4vw, 3rem)/1.05 var(--serif); margin: 0; }
+header h1 em { color: var(--azul); }
+header p { margin: 6px 0 24px; color: var(--suave); max-width: 62ch; }
+
+.grid { display: grid; grid-template-columns: 340px 1fr; gap: 20px; align-items: start; }
+@media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+
+.painel {
+  background: var(--folha); border: 1px solid var(--borda); border-radius: 6px;
+  padding: 20px; display: grid; gap: 16px; min-width: 0;
+}
+
+label {
+  display: block; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--suave); margin-bottom: 6px; font-weight: 600;
+}
+
+input, select {
+  width: 100%; font: 500 1rem var(--mono); padding: 10px 12px;
+  border: 1px solid var(--borda); border-radius: 4px;
+  background: var(--papel); color: var(--tinta);
+}
+input:focus, select:focus, button:focus-visible { outline: 2px solid var(--azul); outline-offset: 1px; }
+
+.f-entrada { display: flex; align-items: center; gap: 8px; }
+.f-entrada span { font: italic 1.4rem var(--serif); white-space: nowrap; }
+
+.ops { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.ops button {
+  font: 500 .9rem var(--sans); padding: 10px 8px; border: 1px solid var(--borda);
+  background: var(--papel); color: var(--tinta); border-radius: 4px; cursor: pointer;
+}
+.ops button[aria-pressed="true"] { background: var(--azul); border-color: var(--azul); color: var(--folha); }
+
+.linha { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.calc {
+  font: 600 1rem var(--sans); padding: 12px; border: 0; border-radius: 4px;
+  background: var(--tinta); color: var(--folha); cursor: pointer;
+}
+.calc:disabled { opacity: .5; cursor: wait; }
+
+.exemplos { display: flex; flex-wrap: wrap; gap: 6px; }
+.exemplos button {
+  font: .8rem var(--mono); padding: 4px 8px; border: 1px dashed var(--borda);
+  background: none; color: var(--suave); border-radius: 3px; cursor: pointer;
+}
+.exemplos button:hover { color: var(--azul); border-color: var(--azul); }
+
+.dica { font-size: .8rem; color: var(--suave); margin: 0; }
+.dica code { font-family: var(--mono); color: var(--tinta); }
+
+.saida { display: grid; gap: 20px; min-width: 0; }
+
+.resultado {
+  background: var(--folha); border: 1px solid var(--borda); border-radius: 6px;
+  padding: 20px 24px; min-width: 0;
+}
+.resultado .eq { font-size: 1.25rem; overflow-x: auto; padding: 4px 0; }
+.resultado .passo { color: var(--suave); font-size: 1rem; overflow-x: auto; }
+
+.status { font: .85rem var(--mono); color: var(--suave); }
+.erro { color: var(--laranja); }
+
+.grafico {
+  background: var(--folha); border: 1px solid var(--borda); border-radius: 6px;
+  padding: 12px; min-width: 0;
+}
+canvas { width: 100%; height: 420px; display: block; }
+
+.legenda { display: flex; gap: 18px; flex-wrap: wrap; font: .85rem var(--mono); padding: 8px 6px 0; color: var(--suave); }
+.legenda i { display: inline-block; width: 18px; height: 3px; vertical-align: middle; margin-right: 6px; border-radius: 2px; }
+
+[hidden] { display: none !important; }

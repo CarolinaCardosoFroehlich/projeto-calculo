@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de Cálculo I</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+  <link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Calculadora de <em>Cálculo I</em></h1>
+      <p>Digite uma função de <i>x</i>, escolha a operação e veja o resultado!</p>
+    </header>
+
+    <div class="grid">
+      <!-- ================= PAINEL DE ENTRADA ================= -->
+      <form class="painel" id="form">
+        <div>
+          <label for="expr">Função</label>
+          <div class="f-entrada">
+            <span>f(x) =</span>
+            <input id="expr" value="sen(x)/x" autocomplete="off" spellcheck="false">
+          </div>
+        </div>
+
+        <div>
+          <label>Operação</label>
+          <div class="ops" id="ops">
+            <button type="button" data-op="derivada">Derivada</button>
+            <button type="button" data-op="integral">Integral indefinida</button>
+            <button type="button" data-op="definida">Integral definida</button>
+            <button type="button" data-op="limite" aria-pressed="true">Limite</button>
+          </div>
+        </div>
+
+        <!-- Campos extras que aparecem conforme a operação escolhida -->
+        <div id="p-derivada" hidden>
+          <label for="ordem">Ordem da derivada</label>
+          <input id="ordem" type="number" min="1" max="10" value="1">
+        </div>
+
+        <div id="p-definida" class="linha" hidden>
+          <div><label for="a">Limite inferior a</label><input id="a" value="0"></div>
+          <div><label for="b">Limite superior b</label><input id="b" value="pi"></div>
+        </div>
+
+        <div id="p-limite" class="linha">
+          <div><label for="ponto">x tende a</label><input id="ponto" value="0"></div>
+          <div>
+            <label for="lado">Lado</label>
+            <select id="lado">
+              <option value="+-">ambos</option>
+              <option value="+">direita (+)</option>
+              <option value="-">esquerda (−)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="calc" id="calc" type="submit" disabled>Carregando SymPy…</button>
+
+        <div>
+          <label>Exemplos</label>
+          <div class="exemplos" id="exemplos">
+            <button type="button" data-e="x^3 - 3x" data-op="derivada">x³ − 3x</button>
+            <button type="button" data-e="x e^x" data-op="integral">x·eˣ</button>
+            <button type="button" data-e="x^2" data-op="definida" data-a="0" data-b="3">∫₀³ x²</button>
+            <button type="button" data-e="(1 + 1/x)^x" data-op="limite" data-p="inf">(1+1/x)ˣ, x→∞</button>
+            <button type="button" data-e="1/x" data-op="limite" data-p="0">1/x, x→0</button>
+            <button type="button" data-e="(x^2 - 4)/(x - 2)" data-op="limite" data-p="2">(x²−4)/(x−2), x→2</button>
+          </div>
+        </div>
+
+        <p class="dica">
+          Use <code>^</code> para potência, <code>sen cos tg ln sqrt e pi</code> e <code>inf</code> para infinito.
+          Multiplicação implícita funciona: <code>2x</code>, <code>x e^x</code>.
+        </p>
+      </form>
+
+      <!-- ================= SAÍDA ================= -->
+      <section class="saida">
+        <div class="resultado">
+          <div class="status" id="status">Carregando o Python no navegador (leva alguns segundos na primeira vez)…</div>
+          <div class="eq" id="eq"></div>
+          <div class="passo" id="passo"></div>
+        </div>
+
+        <div class="grafico">
+          <canvas id="cv" aria-label="Gráfico da função"></canvas>
+          <div class="legenda" id="legenda"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script src="js/grafico.js?v=2"></script>
+  <script src="js/app.js?v=2"></script>
+</body>
+</html>
