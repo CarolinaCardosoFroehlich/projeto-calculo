@@ -95,19 +95,6 @@ projeto-calculo/
 
 Se você quiser entender só a matemática, o arquivo que importa é o `python/calculo.py`. O resto é interface.
 
-## Limitações
-
-- Só funciona com funções de uma variável, sempre em *x*.
-- O SymPy escreve `log` para o logaritmo natural, então você vai ver log(x) onde a aula usa ln(x). Ele também não coloca o módulo na integral de 1/x.
-- Algumas integrais não têm primitiva com as funções que vemos na aula. Nesses casos o SymPy usa funções especiais (como `erf`) ou avisa que não conseguiu resolver.
-- O gráfico usa 500 pontos, então funções que oscilam muito rápido, como sen(1/x) perto de zero, podem aparecer com falhas.
-
-## Ideias para continuar
-
-- Desenhar a reta tangente num ponto escolhido.
-- Mostrar as somas de Riemann (os retângulos) na integral definida.
-- Zoom e arraste no gráfico com o mouse.
-
 ## Tecnologias
 
 Python, SymPy, Pyodide, JavaScript, HTML, CSS, Canvas API e KaTeX.
